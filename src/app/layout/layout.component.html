@@ -1,0 +1,30 @@
+<mat-toolbar color="primary" class="main-toolbar">
+  <span class="logo" routerLink="/">
+    <mat-icon>storefront</mat-icon>E-Shop</span
+  >
+
+  <span class="spacer"></span>
+
+  <nav class="nav-links">
+    <a mat-button routerLink="/products" routerLinkActive="active-link"
+      >Products</a
+    >
+    <a mat-button routerLink="/cart" routerLinkActive="active-link">
+      <mat-icon>shopping_cart</mat-icon>
+      Cart
+    </a>
+  </nav>
+
+  <button
+    mat-icon-button
+    (click)="toggleTheme()"
+    aria-label="Toggle theme"
+    class="theme-toggle"
+  >
+    <mat-icon>brightness_6</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

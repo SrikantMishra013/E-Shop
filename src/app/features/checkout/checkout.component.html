@@ -1,0 +1,71 @@
+<div class="checkout-container">
+  <form #checkoutForm="ngForm" (ngSubmit)="placeOrder()" class="checkout-form">
+    <mat-card class="section">
+      <mat-card-title>Shipping Address</mat-card-title>
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Full Name</mat-label>
+          <input matInput required name="name" [(ngModel)]="formData.name" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Address</mat-label>
+          <input
+            matInput
+            required
+            name="address"
+            [(ngModel)]="formData.address"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>City</mat-label>
+          <input matInput required name="city" [(ngModel)]="formData.city" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>ZIP / Postal Code</mat-label>
+          <input matInput required name="zip" [(ngModel)]="formData.zip" />
+        </mat-form-field>
+      </div>
+    </mat-card>
+
+    <mat-card class="section">
+      <mat-card-title>Payment Method</mat-card-title>
+      <mat-radio-group
+        name="payment"
+        [(ngModel)]="formData.payment"
+        required
+        class="payment-options"
+      >
+        <mat-radio-button value="card" color="primary"
+          >Credit / Debit Card or UPI</mat-radio-button
+        >
+        <mat-radio-button value="cod" color="primary"
+          >Cash on Delivery</mat-radio-button
+        >
+      </mat-radio-group>
+    </mat-card>
+
+    <mat-card class="section">
+      <mat-card-title>Order Summary</mat-card-title>
+      <div class="summary-item" *ngFor="let item of cartItems">
+        {{ item.product.title }} (x{{ item.quantity }}) – ₹{{
+          item.product.price * item.quantity * 100
+        }}
+      </div>
+      <div class="summary-total">Total: ₹{{ getTotal() }}</div>
+    </mat-card>
+
+    <div class="action-button">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!checkoutForm.valid || !cartItems.length"
+      >
+        Place Order
+      </button>
+    </div>
+  </form>
+</div>

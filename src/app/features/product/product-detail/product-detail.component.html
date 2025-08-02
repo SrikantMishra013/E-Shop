@@ -1,0 +1,74 @@
+<div class="product-detail-container">
+  <ng-container *ngIf="product; else loading">
+    <!-- Product Card -->
+    <mat-card class="detail-card enhanced-card">
+      <img
+        mat-card-image
+        [src]="product.image"
+        alt="{{ product.title }}"
+        class="product-image"
+      />
+      <mat-card-header>
+        <mat-card-title class="product-title">
+          {{ product.title }}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="product-description">
+          <strong>Description:&nbsp;</strong> {{ product.description }}
+        </p>
+        <p class="product-price">
+          <strong>Price: &nbsp;</strong>₹{{ product.price * 100 }}
+        </p>
+        <p class="product-rating">
+          <strong>Rating:&nbsp;</strong>
+          <mat-icon color="accent" class="icon">star</mat-icon>
+          <span>{{ product.rating.rate }}</span>
+        </p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" (click)="addToCart()">
+          <mat-icon>shopping_cart</mat-icon>
+          Add to Cart
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <!-- Review Section -->
+    <mat-card class="review-section">
+      <mat-card-title style="padding: 1rem 0; text-align: center"
+        >Customer Reviews</mat-card-title
+      >
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item *ngFor="let review of reviews" class="review-items">
+            <div mat-line class="review-header">
+              <div style="display: flex; align-items: center; gap: 0.5rem">
+                <mat-icon mat-list-icon color="primary">person</mat-icon>
+                <strong style="padding-top: 5px">{{ review.author }}</strong>
+              </div>
+              <span class="stars">
+                <mat-icon
+                  class="icon"
+                  color="accent"
+                  *ngFor="let star of [].constructor(review.rating)"
+                >
+                  star
+                </mat-icon>
+              </span>
+            </div>
+            <div mat-line class="review-comment">{{ review.comment }}</div>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+
+  <!-- Loading Template -->
+  <ng-template #loading>
+    <div class="loading">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>Loading product...</p>
+    </div>
+  </ng-template>
+</div>

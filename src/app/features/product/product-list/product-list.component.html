@@ -1,0 +1,111 @@
+<div style="padding: 24px">
+  <!-- 🔍 FILTER SECTION -->
+  <div class="filters" [ngClass]="{ 'dark-them': this.themeService.isDark }">
+    <mat-form-field appearance="outline">
+      <mat-icon matPrefix>search</mat-icon>
+      <mat-label>Search</mat-label>
+      <input
+        matInput
+        class="input"
+        [(ngModel)]="search"
+        (input)="applyFilters()"
+        placeholder="Search products..."
+        aria-label="Search Products"
+        color="primary"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Category</mat-label>
+      <mat-select [(value)]="category" (selectionChange)="applyFilters()">
+        <mat-option value="">All Categories</mat-option>
+        <mat-option value="men's clothing">Men's Clothing</mat-option>
+        <mat-option value="women's clothing">Women's Clothing</mat-option>
+        <mat-option value="jewelery">Jewelery</mat-option>
+        <mat-option value="electronics">Electronics</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Sort By</mat-label>
+      <mat-select [(value)]="sort" (selectionChange)="applyFilters()">
+        <mat-option value="">None</mat-option>
+        <mat-option value="price-asc">Price: Low to High</mat-option>
+        <mat-option value="price-desc">Price: High to Low</mat-option>
+        <mat-option value="rating">Top Rated</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- 💠 PRODUCT GRID SECTION -->
+  <div class="grid">
+    <!-- Skeleton Loaders -->
+    <ng-container *ngIf="isLoading">
+      <mat-card class="skeleton-card" *ngFor="let i of [].constructor(8)">
+        <div class="skeleton-image"></div>
+        <div class="skeleton-line short"></div>
+        <div class="skeleton-line"></div>
+        <div class="skeleton-line"></div>
+      </mat-card>
+    </ng-container>
+
+    <!-- Product Cards -->
+    <mat-card
+      *ngFor="let product of visibleProducts"
+      class="product-card"
+      tabindex="0"
+      role="group"
+      [attr.aria-label]="
+        'Product: ' + product.title + ', Price: ' + (product.price | currency)
+      "
+      (click)="openProductDetails(product.id)"
+    >
+      <img
+        class="image-container"
+        mat-card-image
+        [src]="product.image"
+        [alt]="product.title"
+        loading="lazy"
+        width="100%"
+        height="200px"
+      />
+
+      <mat-card-header>
+        <mat-card-title class="product-title">{{
+          product.title
+        }}</mat-card-title>
+        <mat-card-subtitle class="product-price"
+          >₹{{ product.price * 100 }}</mat-card-subtitle
+        >
+      </mat-card-header>
+
+      <mat-card-content>
+        <p class="description">
+          {{ product.description }}
+        </p>
+        <div class="rating">
+          <mat-icon color="accent">star</mat-icon>
+          <span class="rate">{{ product.rating.rate }}</span>
+          <span class="count">({{ product.rating.count }} reviews)</span>
+        </div>
+      </mat-card-content>
+
+      <!-- <mat-card-actions>
+      <a [routerLink]="['/product', product.id]" matTooltip="View details">
+        <button
+          mat-raised-button
+          color="primary"
+          [attr.aria-label]="'View ' + product.title"
+        >
+          View
+        </button>
+      </a>
+    </mat-card-actions> -->
+    </mat-card>
+  </div>
+
+  <!-- 🚫 Empty State -->
+  <div *ngIf="!isLoading && visibleProducts.length === 0" class="no-products">
+    <p><mat-icon>search_off</mat-icon> No products found.</p>
+  </div>
+</div>

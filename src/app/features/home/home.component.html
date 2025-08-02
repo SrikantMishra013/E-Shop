@@ -1,0 +1,124 @@
+<div [ngClass]="{ 'dark-theme': themeService.isDark }">
+  <section class="slider-section">
+    <div class="slider-container">
+      <button
+        mat-icon-button
+        (click)="prevSlide()"
+        class="slider-btn prev"
+        aria-label="Previous Slide"
+      >
+        <mat-icon class="icon">chevron_left</mat-icon>
+      </button>
+
+      <div class="slider">
+        <div
+          class="slide"
+          *ngFor="let slide of slides; let i = index"
+          [class.active]="i === currentSlide"
+        >
+          <img [src]="slide.image" [alt]="slide.title" />
+        </div>
+      </div>
+
+      <button
+        mat-icon-button
+        class="slider-btn next"
+        (click)="nextSlide()"
+        aria-label="Next Slide"
+      >
+        <mat-icon class="icon">chevron_right</mat-icon>
+      </button>
+
+      <button
+        mat-raised-button
+        color="primary"
+        routerLink="/products"
+        class="shop-now"
+      >
+        Shop now
+      </button>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <div class="container">
+      <h2 class="section-title">Why Shop With Us?</h2>
+      <ul class="info-list">
+        <li>
+          <span class="icon" aria-hidden="true">🌟</span>
+          <strong>Wide Selection: &nbsp;</strong> From laptops to smart home
+          devices, we’ve got it all.
+        </li>
+        <li>
+          <span class="icon" aria-hidden="true">🚀</span>
+          <strong>Fast Delivery: &nbsp;</strong> Get your order delivered within
+          2–5 business days.
+        </li>
+        <li>
+          <span class="icon" aria-hidden="true">🔒</span>
+          <strong>Secure Payments: &nbsp;</strong> Shop safely with trusted
+          payment gateways.
+        </li>
+        <li>
+          <span class="icon" aria-hidden="true">🎧</span>
+          <strong>24/7 Support: &nbsp;</strong> Our support team is always ready
+          to help.
+        </li>
+        <li>
+          <span class="icon" aria-hidden="true">💰</span>
+          <strong>Best Deals: &nbsp;</strong> Competitive prices and regular
+          promotions.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="featured-categories">
+    <div class="container">
+      <h2 class="section-title">Featured Categories</h2>
+      <div class="category-grid">
+        <div class="category-item">
+          <figure>
+            <img src="assets/laptop.png" alt="High-performance laptops" />
+            <figcaption>Laptops</figcaption>
+          </figure>
+        </div>
+        <div class="category-item">
+          <figure>
+            <img src="assets/phones.png" alt="Latest smartphones" />
+            <figcaption>Smartphones</figcaption>
+          </figure>
+        </div>
+        <div class="category-item">
+          <figure>
+            <img src="assets/accessories.png" alt="Tech accessories" />
+            <figcaption>Accessories</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title">What Our Customers Say</h2>
+      <div class="testimonial-list">
+        <blockquote class="testimonial">
+          “Amazing service and super fast delivery! I got my new laptop in just
+          3 days.”
+          <cite>– Sarah M.</cite>
+        </blockquote>
+        <blockquote class="testimonial">
+          “Great deals and top-notch customer support. Highly recommended.”
+          <cite>– James T.</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer class="footer" [ngClass]="{ 'dark-theme': themeService.isDark }">
+  <div class="container">
+    <p>&copy; 2025 E-Shop. All rights reserved.</p>
+  </div>
+</footer>

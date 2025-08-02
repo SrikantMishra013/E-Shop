@@ -1,0 +1,72 @@
+<div style="padding: 24px; padding-top: 0">
+  <!-- <h2>Your Cart</h2> -->
+
+  <div *ngIf="cart.length === 0; else hasItems" class="empty-cart-message">
+    <p>Your cart is empty.</p>
+    <button routerLink="/products" mat-raised-button color="primary">
+      Browse Products
+    </button>
+  </div>
+
+  <ng-template #hasItems>
+    <mat-card *ngFor="let item of cart; index as i" class="cart-item">
+      <div class="item-details">
+        <img
+          [src]="item.product.image"
+          alt="{{ item.product.title }}"
+          class="item-image"
+        />
+
+        <div class="info">
+          <h3 class="product-title">{{ item.product.title }}</h3>
+          <p><strong>Price:&nbsp;</strong> ₹{{ item.product.price * 100 }}</p>
+          <p class="rating">
+            <strong>Rating:&nbsp;</strong>
+            <mat-icon color="accent">star</mat-icon>
+            {{ item.product.rating.rate }}
+          </p>
+
+          <div class="quantity-control">
+            <strong>Quantity:&nbsp;</strong>
+            <button
+              mat-mini-fab
+              color="primary"
+              (click)="changeQuantity(i, item.quantity - 1)"
+            >
+              <mat-icon>remove</mat-icon>
+            </button>
+            <span>{{ item.quantity }}</span>
+            <button
+              mat-mini-fab
+              color="primary"
+              (click)="changeQuantity(i, item.quantity + 1)"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+
+          <p>
+            <strong>Subtotal:</strong>
+            ₹{{ item.product.price * item.quantity * 100 }}
+          </p>
+        </div>
+      </div>
+
+      <div class="item-actions">
+        <button mat-stroked-button color="warn" (click)="remove(i)">
+          <mat-icon>delete</mat-icon>
+          Remove
+        </button>
+      </div>
+    </mat-card>
+
+    <mat-divider></mat-divider>
+
+    <div class="total">
+      <h3>Total: ₹{{ total }}</h3>
+      <button mat-raised-button color="primary" routerLink="/checkout">
+        Checkout
+      </button>
+    </div>
+  </ng-template>
+</div>
