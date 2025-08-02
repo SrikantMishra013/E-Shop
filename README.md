@@ -1,27 +1,64 @@
-# EcommerceApp
+# 🛒 Angular E-Commerce Store
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
+An elegant and responsive e-commerce web application built with Angular and Angular Material. Supports light/dark theme toggle, cart persistence with localStorage, product filtering, and checkout functionality.
 
-## Development server
+## 🚀 Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- 🛍 Product listing with category, sorting, and search filters
+- 🔄 Infinite scrolling with `ngx-infinite-scroll`
+- 📦 Add to Cart with quantity controls
+- 💾 Cart persists via `localStorage`
+- 🧾 Checkout form with local save and validation
+- ✅ Thank-you confirmation screen after order placement
+- 🌗 Light/Dark theme toggle (Angular Material theming)
+- ⚙️ Routing and modular folder structure
+- 📱 Fully responsive and mobile-friendly design
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 📸 Screenshots
 
-## Build
+<img width="1344" height="640" alt="brave_screenshot_eshop13 netlify app" src="https://github.com/user-attachments/assets/b7ae9e3c-955b-4164-9833-f456a1ef8b25" />
+<img width="1346" height="643" alt="brave_screenshot_eshop13 netlify app (1)" src="https://github.com/user-attachments/assets/c9922bba-9f6d-41a8-b528-a2e23d88d554" />
+<img width="1344" height="621" alt="brave_screenshot_eshop13 netlify app (2)" src="https://github.com/user-attachments/assets/5f666df0-0451-421f-a5ee-fe31c9aff7e3" />
+<img width="1341" height="623" alt="brave_screenshot_eshop13 netlify app (3)" src="https://github.com/user-attachments/assets/65f31879-50de-44b5-9e61-48a5f60aba0f" />
+<img width="1342" height="635" alt="brave_screenshot_eshop13 netlify app (4)" src="https://github.com/user-attachments/assets/edd127d2-8160-429c-b281-942b623f4f51" />
+<img width="1360" height="634" alt="brave_screenshot_eshop13 netlify app (5)" src="https://github.com/user-attachments/assets/6dfb48e3-16cc-4539-a2d8-eaab2fb6e19c" />
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+---
 
-## Further help
+## 🧑‍💻 Tech Stack
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- **Framework**: Angular 17+
+- **UI Components**: Angular Material
+- **State Management**: RxJS `BehaviorSubject`
+- **Routing**: Angular Router
+- **Local Storage**: Browser `localStorage`
+- **Infinite Scroll**: `ngx-infinite-scroll`
+- **Deployment**: Netlify
+
+---
+
+## ⚙️ Getting Started
+
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- Angular CLI
+
+### Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/SrikantMishra013/E-Shop.git
+cd E-shop
+
+# Install dependencies
+npm install
+
+# Run locally
+ng serve
